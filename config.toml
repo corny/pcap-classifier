@@ -1,0 +1,12 @@
+
+[capture]
+interface = "bat0"
+filter    = "ether multicast"
+
+[influx]
+host        = "http://localhost:8086/"
+database    = "traffic"
+username    = ""
+password    = ""
+measurement = "multicast"
+interval    = 60
