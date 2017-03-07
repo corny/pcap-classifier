@@ -45,11 +45,17 @@ func handlePacket(packet gopacket.Packet) {
 			key = fmt.Sprintf("UDP4-%d", udpLayer.DstPort)
 			//fmt.Printf("UDPv4 Dst=%s Port=%d\n", ip.(*layers.IPv4).DstIP.String(), udpLayer.DstPort)
 		}
+	} else  if layer := packet.Layer(layers.LayerTypeLLC); layer != nil {
+		key = "LLC"
 	} else {
 		key = "other"
 		if layer := packet.Layer(layers.LayerTypeEthernet); layer != nil {
 			ethLayer := layer.(*layers.Ethernet)
-			fmt.Printf("Ethernet type=%d\n", ethLayer.EthernetType)
+			if ethLayer.EthernetType == 0x88bf {
+				key = "STP"
+			} else {
+				fmt.Printf("Ethernet type=%d\n", ethLayer.EthernetType)
+			}
 		} else {
 			fmt.Printf("%s\n", packet)
 		}
