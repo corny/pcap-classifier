@@ -45,7 +45,7 @@ func handlePacket(packet gopacket.Packet) {
 			key = fmt.Sprintf("UDP4-%d", udpLayer.DstPort)
 			//fmt.Printf("UDPv4 Dst=%s Port=%d\n", ip.(*layers.IPv4).DstIP.String(), udpLayer.DstPort)
 		}
-	} else  if layer := packet.Layer(layers.LayerTypeLLC); layer != nil {
+	} else if layer := packet.Layer(layers.LayerTypeLLC); layer != nil {
 		key = "LLC"
 	} else {
 		key = "other"

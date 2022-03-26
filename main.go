@@ -1,12 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
-
 	"time"
-
-	"fmt"
 
 	"github.com/BurntSushi/toml"
 )
